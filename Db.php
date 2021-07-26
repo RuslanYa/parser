@@ -7,7 +7,7 @@ class Db
     public $dsn = 'localhost';
     public $user = 'admin';
     public $password = '6mhHXb8pFAaM';
-    public $table = 'phone_book';
+    public $table = 'parser';
     public $mysqli;
    
 
