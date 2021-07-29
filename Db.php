@@ -1,26 +1,25 @@
 <?php 
 /**
- * Класс создания объекта подключения к БД
+ * Класс подключения к БД
  */
 class Db
 {
-    public $dsn = 'localhost';
+
+    public $dsn = 'mysql:dbname=parser;host=localhost;charset=UTF8';
     public $user = 'admin';
     public $password = '6mhHXb8pFAaM';
-    public $table = 'parser';
-    public $mysqli;
-   
+    public $db;
+
 
     public function __construct()
     {
-        $this->mysqli = new mysqli($this->dsn, $this->user, $this->password, $this->table);
-        $this->mysqli->set_charset('utf8');
-        if ($this->$mysqli->connect_errno) {
-            echo "Не удалось подключиться к MySQL: (" . $this->$mysqli->connect_errno . ") " . $this->$mysqli->connect_error;
-        }
-        // echo $this->$mysqli->host_info . "\n";
-        
+        try {
 
+            $this->db = new PDO( $this->dsn, $this->user, $this->password );
+
+            } catch(PDOException $e) {
+                echo 'Не удалось подключиться к MySQL: ' . $e->getMessage();
+            }
     }
 }   
 
